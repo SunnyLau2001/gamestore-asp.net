@@ -1,1 +1,29 @@
-GET http://localhost:5231/
+GET http://localhost:5231/games
+
+###
+GET http://localhost:5231/games/1
+
+###
+POST http://localhost:5231/games
+Content-Type: application/json
+
+{
+    "name": "Minecraft",
+    "genre": "Kids and Family",
+    "price": 19.99,
+    "releaseDate": "2011-11-18"
+}
+
+###
+PUT http://localhost:5231/games/1
+Content-Type: application/json
+
+{
+    "name": "Street Fighter VI Deluxe Edition",
+    "genre": "Fighting",
+    "price": 63.74,
+    "releaseDate": "2023-06-02"
+}
+
+###
+DELETE http://localhost:5231/games/1
