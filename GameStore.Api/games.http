@@ -1,7 +1,7 @@
 GET http://localhost:5231/games
 
 ###
-GET http://localhost:5231/games/3
+GET http://localhost:5231/games/1
 
 ###
 POST http://localhost:5231/games
@@ -28,8 +28,15 @@ Content-Type: application/json
 #     "releaseDate": "2011-11-18"
 # }
 
+# {
+#     "name": "FIFA 23",
+#     "genreId": 3,
+#     "price": 69.99,
+#     "releaseDate": "2022-09-27"
+# }
+
 ###
-PUT http://localhost:5231/games/4
+PUT http://localhost:5231/games/2
 Content-Type: application/json
 
 {
