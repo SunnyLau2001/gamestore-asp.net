@@ -16,11 +16,13 @@ public static class GamesEndpoints
 
         // GET /games
         group.MapGet("/", async (GameStoreContext dbContext) =>
-            await dbContext.Games
+        {
+            return await dbContext.Games
                 .Include(game => game.Genre)
                 .Select(game => game.ToGameSummaryDto())
                 .AsNoTracking()
-                .ToListAsync()
+                .ToListAsync();
+        }
         );
 
         // GET /games/{id}
