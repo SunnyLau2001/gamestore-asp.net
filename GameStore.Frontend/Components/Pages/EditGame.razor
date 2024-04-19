@@ -1,5 +1,6 @@
 ﻿@page "/editgame"
 @page "/editgame/{id:int}"
+@rendermode InteractiveServer
 
 @inject NavigationManager NavigationManager
 @inject GamesClient GamesClient
@@ -16,12 +17,12 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmit" >
+            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmitAsync" >
                 <DataAnnotationsValidator />
                 <ValidationSummary />
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <InputText id="name" @bind-Value="game.Name" class="form-control" aria-describedby="name" />
+                    <InputText id="name" @bind-Value="game.Name"  class="form-control" aria-describedby="name" />
                     <ValidationMessage For="() => game.Name"/>
                 </div>
                     <div class="mb-3">
@@ -61,14 +62,12 @@ else
     [SupplyParameterFromForm]
     private GameDetails? game { get; set; }
 
-    private GenresClient genresClient = new();
-
     private Genre[]? genres;
 
     private string title = string.Empty;
 
     // Invoke when load page with parameter, and when form send with data assigned.
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         if (game is not null)
         {
@@ -76,7 +75,7 @@ else
         }
         if (Id is not null)
         {
-            game = GamesClient.GetGame(Id.Value);
+            game = await GamesClient.GetGameAsync(Id.Value);
             title = $"Edit {game.Name}";
         }
         else {
@@ -89,22 +88,22 @@ else
         }
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        genres = GenresClient.GetGenres();
+        genres = await GenresClient.GetGenresAsync();
     }
 
-    private void HandleSubmit()
+    private async Task HandleSubmitAsync()
     {
         ArgumentNullException.ThrowIfNull(game);
 
         if (Id is null) {
-            GamesClient.AddGame(game);
+            await GamesClient.AddGameAsync(game);
         }
         else 
         {
             game.Id = Id.Value;
-            GamesClient.UpdateGame(game);
+            await GamesClient.UpdateGameAsync(game);
         }
 
         NavigationManager.NavigateTo("/");

@@ -7,12 +7,6 @@ GET http://localhost:5231/games/1
 POST http://localhost:5231/games
 Content-Type: application/json
 
-{
-    "name": "Final Fantasy XIV",
-    "genreId": 2,
-    "price": 59.99,
-    "releaseDate": "2010-09-30"
-}
 
 # {
 #     "name": "Street Fighter VI Deluxe Edition",
@@ -22,10 +16,10 @@ Content-Type: application/json
 # }
 
 # {
-#     "name": "Minecraft",
-#     "genreId": 5,
-#     "price": 19.99,
-#     "releaseDate": "2011-11-18"
+#     "name": "Final Fantasy XIV",
+#     "genreId": 2,
+#     "price": 59.99,
+#     "releaseDate": "2010-09-30"
 # }
 
 # {
@@ -33,6 +27,13 @@ Content-Type: application/json
 #     "genreId": 3,
 #     "price": 69.99,
 #     "releaseDate": "2022-09-27"
+# }
+
+# {
+#     "name": "Minecraft",
+#     "genreId": 4,
+#     "price": 19.99,
+#     "releaseDate": "2011-11-18"
 # }
 
 ###
