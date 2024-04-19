@@ -1,6 +1,11 @@
 ﻿@page "/"
+@inject GamesClient GamesClient
 
 <PageTitle>Game Catalog</PageTitle>
+
+<div class="mt-4">
+    <a class="btn btn-primary" role="button" href="/editgame">New Game</a>
+</div>
 
 @if(games is null) {
     <p><em>Loading...</em></p>
@@ -32,13 +37,11 @@ else
 }
 
 @code {
-    private GamesClient client = new();
-
     private GameSummary[]? games;
 
     protected override void OnInitialized()
     {
-        games = client.GetGames();
+        games = GamesClient.GetGames();
     }
 }    
     
